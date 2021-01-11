@@ -1,22 +1,36 @@
-f = open('text.txt')
+import math
+import sys
 
-n = int(f.readline())
-t = []
-s = 0
+def rem(x):
+    for elem in de:
+        if elem == x:
+            elem = -1
+        elif math.gcd(elem,x)>1:
+            elem-=1
 
-for i in range (n):
-    a,b = map(int,f.readline().split)
-    t.append(a)
-    t.append(b)
-for i in range(0,len(t)-1,2):
-    s+=min(t[i],t[i+1])
-if s%3!=0:
-    print(s)
+
+n = int(input())
+m = [i for i in range(1,2*n+1)]
+de = [0]*(2*n)
+for i in range (2*n):
+    for j in range (2*n):
+        if i!=j:
+            if math.gcd(m[i],m[j])>1:
+                de[i]+=1
+print(de)
+for i in range(n-1):
+    x = int(input())
+    rem(x)
+    ans = m[de.index(max(de))]    
+    print(ans)
+    rem(ans)
+    sys.stdout.flush()
+
+
+
+
+'''x1,y1,x2,y2 = map(int,input().split())
+if x1 == x2 or y1 == y2:
+    print('oo')
 else:
-    splm = 10e20
-    for i in range(0,len(t)-1,2):
-        spl = abs(t[i]-t[i+1])
-        if spl<splm and (s + spl)%3!=0:
-            splm = spl
-    print(s+splm) 
-f.close()
+'''
